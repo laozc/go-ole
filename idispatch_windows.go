@@ -206,7 +206,8 @@ func invoke(disp *IDispatch, dispid int32, dispatch int16, params ...interface{}
 			SysFreeString(((*int16)(unsafe.Pointer(uintptr(varg.Val)))))
 		}
 		if varg.VT == (VT_BSTR|VT_BYREF) && varg.Val != 0 {
-			log.Printf("Received varg %d val of %d, hr is %d", n, (**uint16)(unsafe.Pointer(uintptr(varg.Val))), hr)
+			log.Printf("Received varg %d val of %d, hr is %d", n, varg.Val, hr)
+			log.Printf("Deference arg", unsafe.Pointer(uintptr(varg.Val)))
 			*(params[n].(*string)) = BstrToString(*(**uint16)(unsafe.Pointer(uintptr(varg.Val))))
 		}
 	}
