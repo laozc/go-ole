@@ -4,6 +4,7 @@
 package ole
 
 import (
+	"log"
 	"math/big"
 	"syscall"
 	"time"
@@ -205,7 +206,8 @@ func invoke(disp *IDispatch, dispid int32, dispatch int16, params ...interface{}
 			SysFreeString(((*int16)(unsafe.Pointer(uintptr(varg.Val)))))
 		}
 		if varg.VT == (VT_BSTR|VT_BYREF) && varg.Val != 0 {
-			*(params[n].(*string)) = LpOleStrToString(*(**uint16)(unsafe.Pointer(uintptr(varg.Val))))
+			log.Printf("Received varg val of %d, hr is %d", varg.Val, hr)
+			*(params[n].(*string)) = BstrToString(*(**uint16)(unsafe.Pointer(uintptr(varg.Val))))
 		}
 	}
 	return
