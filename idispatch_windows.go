@@ -13,7 +13,6 @@ const int* deref_int_ptr_from_int64(int64_t addr) {
     return *(const int**)pp;
 }
 */
-
 import "C"
 
 import (
