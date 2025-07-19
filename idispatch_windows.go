@@ -223,7 +223,7 @@ func invoke(disp *IDispatch, dispid int32, dispatch int16, params ...interface{}
 			log.Printf("Deference arg -3 %d", (**uint16)(unsafe.Pointer(uintptr(varg.Val))))
 			log.Printf("Deference arg -4 %d", *(**uint16)(unsafe.Pointer(uintptr(varg.Val))))
 
-			val := C.deref_byref_pointer(C.varg.Val)
+			val := C.deref_byref_pointer(varg.Val)
 			log.Printf("Deference arg -5 %v", unsafe.Pointer(val))
 			log.Printf("Deference arg -6 %v", (*uint16)(unsafe.Pointer(val)))
 			//log.Printf("Deference arg -4 %v", *(**uint16)(unsafe.Pointer(uintptr(varg.Val))))
